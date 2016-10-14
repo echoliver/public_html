@@ -1,0 +1,88 @@
+首先就是要下载它，下载地址http://sourceforge.net/projects/phpexcelreader/
+
+
+下载回来直接解压里面有一个Excel文件夹，这个目录就是它工作的文件。其余的文件是示例文件。示例文件挂上是不能直接用的，需要修改Execl目录下的reader.php，找到第31行的:
+
+require_once ‘Spreadsheet/Excel/Reader/OLERead.php’;
+
+将其修改为require_once ‘oleread.php’;
+
+并将本目录下的oleread.inc文件改名为oleread.php
+
+至此修改完，再运行下测试文件就能正常工作了,下面是自带的example.php的内容,还是很简单的。入库的方法在另外一个示例文件中也有。
+
+PHP-ExcelReader的用法比较简单，下面四句代码是必须的：
+
+
+require_once 'Excel/reader.php';
+$data = new Spreadsheet_Excel_Reader();
+$data->setOutputEncoding('CP1251');
+$data->read('jxlrwtest.xls');
+
+
+
+
+上述四句代码执行完后，excel文件就解析完成了。解析的结果在数组$reader->sheets[0]中，包含maxrow、maxcol、numRows、numCols、cells、cellsInfo六项，其中有用的有numRows（行数）、numCols（列数）、cells（单元格内容）。要想获取excel文件的具体数据信息，遍历$reader->sheets[0][“cells”]数组即可。该数组是形如
+
+$reader->sheets[0][“cells”][<行索引>][<列索引>] = <单元格中的值>
+
+的二维数组，行索引和列索引均从1开始计数。
+
+ 
+
+//完整代码
+
+<?php
+// Test CVS
+require_once 'Excel/reader.php';
+$data = new Spreadsheet_Excel_Reader();
+$data->setOutputEncoding('CP936');
+$data->read('aaa.xls');
+error_reporting(E_ALL ^ E_NOTICE);
+
+for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
+    for ($j = 4; $j <= 11; $j++) {
+           
+            if($data->sheets[0]['cells'][$i][$j]==""){
+                echo $nuk="null";   
+            }
+            echo $data->sheets[0]['cells'][$i][$j].",";
+    }
+    echo "<br>";
+}
+?>
+
+
+
+
+
+
+需要说明的是：
+
+1.      Excel/reader.php文件中已经用require_once包含了oleread.inc文件，所以在调用的时候不需要加载oleread.inc。
+
+2.      官方提供的excel文件jxlwtest.xls已经损坏，无法读取与解析。
+
+3.      原始Excel/reader.php文件的第31行（如下）会导致错误：
+
+require_once 'Spreadsheet/Excel/Reader/OLERead.php';
+
+原因是Spreadsheet/Excel/Reader/OLERead.php文件不存在。其实这里所需的文件就是Excel/oleread.inc，把require_once后的文件名改成 ’oleread.inc’即可。
+
+4.      原始Excel/reader.php文件的第261行会导致如下警告：
+
+Deprecated: Assigning thereturn value of new by reference is deprecated
+
+其原因是此行的 =& 符号已经在PHP 5.3中被废弃。根据该符号在此处的作用，直接将其改为 = 即可。
+
+5.      PHP-ExcelReader不支持Excel 2007文档的解析，也就是说扩展名为xlsx的Excel文件不能使用本类库进行解析；它只针对扩展名为xls的Excel文件。
+
+6.      PHP-ExcelReader的设置编码方法基于iconv命令，setOutputEncoding方法的参数就是需要设置的字符集的名称。要使这个方法生效需要给本地的PHP环境安装iconv扩展；若本地 PHP环境没有iconv扩展，那么PHP-ExcelReader的编码方法默认为Unicode。关于iconv命令可参见如下链接：
+
+http://www.cnblogs.com/xuxm2007/archive/2010/11/09/1872379.html
+
+7.      PHP-ExceReader在解析整数的时候可能会出现精度上的误差，如58解析为57.5，原因不明。能做的就是解析完后检查下数据，然后四舍五入（如果有必要的话）。
+
+8.      PHP-ExcelReader对于excel文件中的空白单元格，要么直接跳过不存放到结果数组中，要么保存为0或者””（空字符串）。
+
+

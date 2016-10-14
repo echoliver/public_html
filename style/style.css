@@ -1,0 +1,55 @@
+/* CSS Document */
+html,body,h1,h2,h3,h4,h5,h6,ul,dl,ol,li,dt,dd,table,tr,th,td,input,select,textarea,img,p,pre,input,textarea,form,fieldset  { padding:0;margin:0;  }
+
+img{ border-style:none; }
+
+body{font-family:"微软雅黑"}
+hr{height:2px;border:none;border-top:3px solid #AABF00; }
+/*ul{margin:0px 0px 0px 5px;padding:0px;}
+ul li{margin-bottom:10px;}*/
+a{text-decoration:none;}
+a:link {color:#004080;}
+a:visited {color:#004080;}
+.footer a:link,.footer a:visited {color:#999999;}
+#container{}
+#moument{width:680px;height:220px;margin-left:auto;margin-right:auto;}
+#logo_imgbox{height:280px;}
+#logo_img{margin-top:60px;margin-left:auto;margin-right:auto;text-align:center;}
+.input_set{widht:auto;display:inline-block;}
+
+#kon{height:60px;}
+
+.solist_box{width:680px;margin:0px auto auto auto;padding-bottom:36px;}
+.list_left{width:320px;float:left;}
+.list_right{width:320px;margin-left:36px;float:left;}
+.list_title{margin:5px auto 5px 10px;font-style:normal;font-size:12px;color:#2A7F00;}
+.list{
+	width: 310px;
+	margin: 5px auto 5px 10px;
+	height: 280px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: rgb(73,55,93);
+	background-color: #F5F6F5;
+}/*rgb(73,55,93)*/
+.list ul{margin:0px 0px 0px 5px;padding:0px;list-style-position: inside;}
+.list ul li{margin-bottom:10px;overflow:hidden;text-overflow:clip;white-space:nowrap;}
+.list ul li a{color:rgb(18,103,232);}
+.list ul li:hover{text-overflow:inherit;overflow:visible}
+
+.footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	z-index: 99;
+	font-size: 12px;
+	height: auto;
+	line-height: 36px;
+	background-color: #F5F6F5;
+	border-top: 1px solid #EBEBEB;
+	color: #999999;
+	text-align: center;
+	clear: both;
+}
+
+/*#004080*/

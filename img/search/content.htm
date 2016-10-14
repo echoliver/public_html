@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style/img.css">
+<script type="text/javascript" src="../js/img.js"></script>
+<title><?php echo urldecode($kw); ?></title>
+</head>
+
+<body>
+<div>
+	<div class="logo">
+		<div class="logo_img">
+			<a href="http://www.gg404.com"><img alt="谷歌搜索" src="../../image/404_2_min.jpg"></a>
+		</div>
+		<div class="logo_in">
+			<div>
+				<form action="/s/" method="get" onsubmit="return checkText();">
+					<span class="text_span"><input id="text_in" class="text_s" type="text" name="kw" /></span>
+					<span class="btn_span"><input class="btn_in" type="submit" value="搜 索" /></span>
+				</form>
+			</div>
+			<div class="sou_list">
+				<a href="http://www.gg404.com">网页</a>
+				<b>图片</b>
+			</div>
+		</div>
+	</div>
+<!--图片容器-->
+	<div id="container">
+		<div id="img_box">
+		</div>
+	</div>
+	
+</div>
+<script language="javascript">
+var b=<?php echo $data; ?>;
+//alert(b.width);
+//var sa=b[0].url;
+document.write(b.length);
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?php
+//----------------定义路径------------------------------------------
+define('WEBROOT',str_replace("\\",'/',dirname(__FILE__)));
+define('WEBSEARCH',WEBROOT.'/s');
+define('WEBCSS',WEBROOT.'/style');
+define('WEBJS',WEBROOT.'/js');
+define('WEBINC',WEBROOT.'/include');
+//----------------定义网站变量---------------------------------------
+define('WEBNAME','Liver搜索');
+?>
